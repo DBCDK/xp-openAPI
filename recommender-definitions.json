@@ -1,0 +1,159 @@
+{
+  "Request": {
+    "type": "object",
+    "required": ["like"],
+    "properties": {
+      "like": {
+        "description": "array of liked pids",
+        "type": "array",
+        "items": {
+          "description": "pid",
+          "type": "string"
+        }
+      },
+      "dislike": {
+        "description": "array of disliked pids",
+        "type": "array",
+        "items": {
+          "description": "pid",
+          "type": "string"
+        }
+      },
+      "maxresults": {
+        "description": "maximum number of returned recommendations",
+        "type": "integer"
+      },
+      "discard": {
+        "description": "pids to discard from result",
+        "type": "array",
+        "items": {
+          "description": "pid",
+          "type": "string"
+        }
+      }    
+    }
+  },
+  
+  "Header": {
+    "type": "object",
+    "properties": {
+          "recommender": {
+            "description": "Name of recommender",
+            "type": "string"
+          },
+          "svn-revision": {
+            "description": "Revision of service",
+            "type": "string"
+          },
+          "ab-id": {
+            "description": "ab-id of service instance",
+            "type": "integer"
+          },
+          "version": {
+            "description": "version of current instance",
+            "type": "string"
+          },
+          "build": {
+            "description": "Build number of service instance",
+            "type": "integer"
+          },
+          "filters": {
+            "description": "applied filters an their timings",
+            "type": "object"        
+          },
+          "time": {
+            "description": "Execution time of call",
+            "type": "integer"        
+          },
+          "numFound": {
+            "description": "Number of recommendations returned",
+            "type": "integer"        
+          },
+          "statusCode": {
+            "description": "Status of call",
+            "type": "integer"        
+          }
+
+    }
+  },
+
+  "Recommendation": {
+    "type": "object",
+    "properties": {
+      "pid": {
+        "description": "Recommended pid",
+        "type": "string"
+      },
+      "title": {
+        "description": "Title of recommendation",
+        "type": "string"
+      },
+      "val": {
+        "description": "Value of recommendation (similarity)",
+        "type": "float"
+      },
+      "from-pid": {
+        "description": "The recommendation is based on this pid",
+        "type": "string"
+      },
+      "from-title": {
+        "description": "The recommendation is based on this title (points to from-pid)",
+        "type": "string"
+      },
+      "ab-id": {
+        "description": "ab-id of service instance",
+        "type": "integer"
+      },
+      "recommender": {
+        "description": "Name of recommender",
+        "type": "string"
+      }
+    }
+  },
+
+  "Response": {
+    "type": "object",
+    "properties": {
+      "responseHeader": {
+        "description": "Header with information about recieved response",
+        "type": "object",
+          "schema": {
+            "$ref": "#/Header"
+          }
+      },
+      "response": {
+        "description": "Array of recommendations",
+        "type": "array",
+        "items": {
+          "description": "Recommendation",
+          "schema": {
+            "$ref": "#/Recommendation"
+          }
+          
+        }
+      }    
+    }
+  },
+  
+  "Error": {
+    "type": "object",
+    "items": {
+      "traceback": {
+        "description": "Error traceback",
+        "type": "string"
+      },
+      "type": {
+        "description": "Type of error",
+        "type": "string"
+      },
+      "value": {
+        "description": "Error description",
+        "type": "string"
+      },
+      "statusCode": {
+        "description": "Statuscode of error",
+        "type": "integer"
+      }
+    }
+  }  
+}
