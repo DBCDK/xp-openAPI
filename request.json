@@ -1,0 +1,34 @@
+"Request": {
+  "type": "object",
+  "required": ["likes"],
+  "properties": {
+    "likes": {
+      "description": "array of liked pids",
+      "type": "array",
+      "items": {
+        "description": "pid",
+        "type": "string"
+      }
+    },
+    "dislikes": {
+      "description": "array of disliked pids",
+      "type": "array",
+      "items": {
+        "description": "pid",
+        "type": "string"
+      }
+    },
+    "maxresults": {
+      "description": "maximum number of returned recommendations",
+      "type": "integer"
+    },
+    "discard": {
+      "description": "pids to discard from result",
+      "type": "array",
+      "items": {
+        "description": "pid",
+        "type": "string"
+      }
+    }
+  }
+}
